@@ -15,16 +15,16 @@
 void	double_quote(int i)
 {
 	g_main.syntax.first = i;
-	g_main.syntax.token = SHELL_QUOTE_CHARS[1];
+	g_main.syntax.token = '"';
 	g_main.syntax.lenght = ++i;
 	g_main.syntax.count++;
 	while (g_main.input_line[g_main.syntax.lenght])
 	{
 		if (g_main.input_line[g_main.syntax.lenght]
-			== SHELL_QUOTE_CHARS[1]
+			== '"'
 			&& g_main.syntax.last == 0
 			&& g_main.input_line[g_main.syntax.lenght - 1]
-			!= SHELL_ESCAPE[0])
+			!= '\'')
 		{
 			g_main.syntax.last = ++g_main.syntax.lenght;
 			g_main.syntax.count++;
@@ -36,13 +36,13 @@ void	double_quote(int i)
 void	single_quote(int i)
 {
 	g_main.syntax.first = i;
-	g_main.syntax.token = SHELL_QUOTE_CHARS[0];
+	g_main.syntax.token = '\'';
 	g_main.syntax.lenght = ++i;
 	g_main.syntax.count++;
 	while (g_main.input_line[g_main.syntax.lenght])
 	{
 		if (g_main.input_line[g_main.syntax.lenght]
-			== SHELL_QUOTE_CHARS[0] && g_main.syntax.last == 0)
+			== '\'' && g_main.syntax.last == 0)
 		{
 			g_main.syntax.last = ++g_main.syntax.lenght;
 			g_main.syntax.count++;
@@ -66,12 +66,12 @@ int	syntax_quote(int i)
 	while (g_main.input_line[i])
 	{
 		if (g_main.syntax.token == '\0' && g_main.input_line[i]
-			== SHELL_QUOTE_CHARS[0]
-			&& g_main.input_line[i - 1] != SHELL_ESCAPE[0])
+			== '\''
+			&& g_main.input_line[i - 1] != '\\')
 			single_quote(i);
 		else if (g_main.syntax.token == '\0' && g_main.input_line[i]
-			== SHELL_QUOTE_CHARS[1]
-			&& g_main.input_line[i - 1] != SHELL_ESCAPE[0])
+			== '"'
+			&& g_main.input_line[i - 1] != '\\')
 			double_quote(i);
 		i++;
 	}

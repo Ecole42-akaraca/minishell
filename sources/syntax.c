@@ -25,7 +25,7 @@ int	ft_escape(void)
 	i = 0;
 	while (g_main.input_line[i])
 	{
-		if (g_main.input_line[i] == SHELL_ESCAPE[0] && g_main.input_line[i + 1] == '\0')
+		if (g_main.input_line[i] == '\\' && g_main.input_line[i + 1] == '\0')
 		{
 			printf("Syntax Error\n");
 			return (-1);

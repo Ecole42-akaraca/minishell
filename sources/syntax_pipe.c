@@ -30,6 +30,8 @@
  * 			pipe'ın solundaki space karaterlerine eşit ise
  * 			-1 dönüyor.
  * 		
+ *  return (-1) if() koşulunda l != 0 şartı, || operatörünün
+ * 		kullanımı içindir.
  * @param i
  * @fn ft_strlen()
  * @return int 
@@ -46,14 +48,14 @@ int	syntax_pipe(int i)
 	l = 0;
 	while (g_main.input_line[i] && token == '\0')
 	{
-		if (token == '\0' && g_main.input_line[i] == SHELL_META_CHARS[0] && g_main.input_line[i - 1] != SHELL_ESCAPE[0])
-			token = SHELL_META_CHARS[0];
+		if (token == '\0' && g_main.input_line[i] == '|' && g_main.input_line[i - 1] != '|')
+			token = '|';
 		if (g_main.input_line[i] == 32)
 			count++;
 		i++;
 	}
 	k = i;
-	while (g_main.input_line[k] && g_main.input_line[k] != SHELL_META_CHARS[0] && g_main.input_line[i - 1] != SHELL_ESCAPE[0])
+	while (g_main.input_line[k] && g_main.input_line[k] != '|' && g_main.input_line[i - 1] != '|')
 	{
 		if (g_main.input_line[k] == 32)
 			l++;
@@ -61,7 +63,7 @@ int	syntax_pipe(int i)
 	}
 	if (token == '\0')
 		return (ft_strlen(g_main.input_line));
-	if ((token != '\0' && count == i - 1) || k - i == l)
+	if ((token != '\0' && count == i - 1) || (l != 0 && k - i == l))
 		return (-1);
 	return (i);
 }

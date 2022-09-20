@@ -129,7 +129,7 @@
 # define BLINK "\e[5;37m" // yanıp sönmeli şekilde çıktıyı verir, lakin bu özellik bizde yok :(
 # define RED_BLINK "\e[1;3;5;31m"
 
-# define SHELL_META_CHARS "|<>;$"
+# define SHELL_META_CHARS "|<>"
 # define SHELL_QUOTE_CHARS	"'\""
 # define SHELL_ESCAPE "\\"
 
@@ -264,8 +264,6 @@ int		syntax_quote(int i);
 
 // syntax_redirection.c
 int		syntax_heredoc(void);
-int		syntax_right(void);
-int		syntax_left(void);
 int		syntax_left_right(void);
 
 // syntax.c
