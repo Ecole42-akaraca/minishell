@@ -21,7 +21,7 @@
  * 		eğerki eşitlik söz konusu ise -1 döndürülüyor.
  * 		pipe kullanılmamış ise (token == '\0') kendi uzunluğu döndürülüyor.
  * 
- * 	2.While döngüsünde varsa pipe operatörünün solu kontrol ediliyor,
+ * 	2.While döngüsünde varsa pipe operatörünün sağı kontrol ediliyor,
  * 		eğer pipe yok ise bu döngüye girmiyor.
  * 		Girdiği durumda ise pipe görene kadar veya girdi sonuna kadar
  * 			okumaya devam ediyor, bu sırada boş karakterler sayılır
@@ -48,14 +48,14 @@ int	syntax_pipe(int i)
 	l = 0;
 	while (g_main.input_line[i] && token == '\0')
 	{
-		if (token == '\0' && g_main.input_line[i] == '|' && g_main.input_line[i - 1] != '|')
+		if (token == '\0' && g_main.input_line[i] == '|' && g_main.input_line[i - 1] != '\\')
 			token = '|';
 		if (g_main.input_line[i] == 32)
 			count++;
 		i++;
 	}
 	k = i;
-	while (g_main.input_line[k] && g_main.input_line[k] != '|' && g_main.input_line[i - 1] != '|')
+	while (g_main.input_line[k] && g_main.input_line[k] != '|' && g_main.input_line[k - 1] != '\\')
 	{
 		if (g_main.input_line[k] == 32)
 			l++;
@@ -63,7 +63,7 @@ int	syntax_pipe(int i)
 	}
 	if (token == '\0')
 		return (ft_strlen(g_main.input_line));
-	if ((token != '\0' && count == i - 1) || (l != 0 && k - i == l))
+	if (token != '\0' && (count == i - 1 || k - i == l))
 		return (-1);
 	return (i);
 }
