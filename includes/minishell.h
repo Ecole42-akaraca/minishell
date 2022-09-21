@@ -6,7 +6,7 @@
 /*   By: akaraca <akaraca@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 10:57:07 by akaraca           #+#    #+#             */
-/*   Updated: 2022/09/20 16:37:22 by akaraca          ###   ########.fr       */
+/*   Updated: 2022/09/21 15:35:40 by akaraca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,5 +271,9 @@ int		ft_redirection(void);
 int		ft_pipe(void);
 int		ft_quote(void);
 int		syntax(void);
+
+// utils.c
+int		look_the_quote(char *str, int i);
+char 	*delete_space(char *str);
 
 #endif

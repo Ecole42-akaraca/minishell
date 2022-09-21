@@ -6,13 +6,14 @@
 /*   By: akaraca <akaraca@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 12:18:39 by gsever            #+#    #+#             */
-/*   Updated: 2022/09/20 14:18:15 by akaraca          ###   ########.fr       */
+/*   Updated: 2022/09/21 13:39:09 by akaraca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 /**
+ * 
  * @brief 
  * 
  * @fn signal()

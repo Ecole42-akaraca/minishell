@@ -6,7 +6,7 @@
 /*   By: akaraca <akaraca@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:41:13 by gsever            #+#    #+#             */
-/*   Updated: 2022/09/20 16:34:31 by akaraca          ###   ########.fr       */
+/*   Updated: 2022/09/21 15:06:14 by akaraca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_escape(void)
 	{
 		if (g_main.input_line[i] == '\\' && g_main.input_line[i + 1] == '\0')
 		{
-			printf("Syntax Error\n");
+			printf("Escape: Syntax Error\n");
 			return (-1);
 		}
 		i++;
@@ -112,10 +112,11 @@ int	ft_quote(void)
  * 	belirli kurallara uygunmu kontrol ediliyor.
  * 
  * @fn ft_quote()
- * @return int 
+ * @return int 1(run) - 0(stop)
  */
 int	syntax(void)
 {
+	g_main.input_line = delete_space(g_main.input_line);
 	if (ft_quote() == 1 && ft_redirection() == 1 && ft_pipe() == 1 && ft_escape() == 1)
 		return (1);
 	return (0);

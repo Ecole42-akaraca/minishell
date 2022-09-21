@@ -6,7 +6,7 @@
 /*   By: akaraca <akaraca@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:15:03 by akaraca           #+#    #+#             */
-/*   Updated: 2022/09/20 16:59:33 by akaraca          ###   ########.fr       */
+/*   Updated: 2022/09/21 15:34:56 by akaraca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	syntax_left_right(void)
 	token = '\0';
 	while (g_main.input_line[i])
 	{
-		if (token == '\0' && (g_main.input_line[i] == '<' || g_main.input_line[i] == '>'))
+		if (token == '\0' && (g_main.input_line[i] == '<' || g_main.input_line[i] == '>') && look_the_quote(g_main.input_line, i))
 		{
 			token = g_main.input_line[i];
 			first = i;
