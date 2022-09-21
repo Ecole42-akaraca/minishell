@@ -32,6 +32,11 @@
  * 		
  *  return (-1) if() koşulunda l != 0 şartı, || operatörünün
  * 		kullanımı içindir.
+ * 
+ *  "|" operatörünün solu ve sağı EOF olmamalıdır. (|)	✓
+ * 		"a |"		hatalı bir yapıdır. (|)				✓
+ * 		"| a"		hatalı bir yapıdır. (|)				✓
+ * 
  * @param i
  * @fn ft_strlen()
  * @return int 
@@ -63,7 +68,7 @@ int	syntax_pipe(int i)
 	}
 	if (token == '\0')
 		return (ft_strlen(g_main.input_line));
-	if (token != '\0' && (count == i - 1 || k - i == l))
+	if (token != '\0' && ((count == i - 1) || (k - i == l)))
 		return (-1);
 	return (i);
 }

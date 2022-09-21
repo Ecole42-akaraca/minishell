@@ -21,28 +21,29 @@ int	syntax_heredoc(void)
 /**
  * @brief 
  * 	"<" operatörünün sağı EOF olmamalıdır. (newline)	✓
- * 		"< >|"		hatalı bir yapıdır. (>|)	✓
- * 		"<>|"		hatalı bir yapıdır. (|)		✓
- * 		"<>||"		hatalı bir yapıdır. (||)	✓
- * 		"<||"		hatalı bir yapıdır. (||)	✓
- * 		"<|"		hatalı bir yapıdır. (|)		✓
- * 		"<>		|"	hatalı bir yapıdır. (|)		✓
- * 		"<		|"	hatalı bir yapıdır. (|)		✓
- * 		"<		>>"	hatalı bir yapıdır. (>>)	✓
- *		"<>>"		hatalı bir yapıdır. (>)		✓
- *		"<		<<"	hatalı bir yapıdır. (<<)	✓
- * 		"<		>"	hatalı bir yapıdır. (>)		✓
- * 		"<		<"	hatalı bir yapıdır. (<)		✓
+ * 		"<>"		hatalı bir yapıdır. (newline)		✓
+ * 		"< >|"		hatalı bir yapıdır. (>|)			✓
+ * 		"<>|"		hatalı bir yapıdır. (|)				✓
+ * 		"<>||"		hatalı bir yapıdır. (||)			✓
+ * 		"<||"		hatalı bir yapıdır. (||)			✓
+ * 		"<|"		hatalı bir yapıdır. (|)				✓
+ * 		"<>		|"	hatalı bir yapıdır. (|)				✓
+ * 		"<		|"	hatalı bir yapıdır. (|)				✓
+ * 		"<		>>"	hatalı bir yapıdır. (>>)			✓
+ *		"<>>"		hatalı bir yapıdır. (>)				✓
+ *		"<		<<"	hatalı bir yapıdır. (<<)			✓
+ * 		"<		>"	hatalı bir yapıdır. (>)				✓
+ * 		"<		<"	hatalı bir yapıdır. (<)				✓
  * 	">" operatörünün sağı EOF olmamalıdır. (newline)	✓
- * 		"> |"		hatalı bir yapıdır. (|)		✓
- * 		">		>>"	hatalı bir yapıdır. (>>)	✓
- * 		">		<<"	hatalı bir yapıdır. (<<)	✓
- * 		"><<"		hatalı bir yapıdır. (<<)	✓
- * 		">		>"	hatalı bir yapıdır. (>)		✓
- * 		"><"		hatalı bir yapıdır. (<)		✓
- * 		">		<"	hatalı bir yapıdır. (<)		✓
- * 		">		<>"	hatalı bir yapıdır. (<>)	✓
- * 		"><>"		hatalı bir yapıdır. (<>)	✓
+ * 		"> |"		hatalı bir yapıdır. (|)				✓
+ * 		">		>>"	hatalı bir yapıdır. (>>)			✓
+ * 		">		<<"	hatalı bir yapıdır. (<<)			✓
+ * 		"><<"		hatalı bir yapıdır. (<<)			✓
+ * 		">		>"	hatalı bir yapıdır. (>)				✓
+ * 		"><"		hatalı bir yapıdır. (<)				✓
+ * 		">		<"	hatalı bir yapıdır. (<)				✓
+ * 		">		<>"	hatalı bir yapıdır. (<>)			✓
+ * 		"><>"		hatalı bir yapıdır. (<>)			✓
  * 	"\" kaçış metasını görmelidir. Duruma göre dize olarak betimleniyor.
  * 	Tırnak operatörlerini görmelidir.
  * 
@@ -82,6 +83,11 @@ int	syntax_left_right(void)
 					printf("left: syntax error near unexpected token `%c%c'\n", g_main.input_line[k], g_main.input_line[k + 1]);
 				else
 					printf("left: syntax error near unexpected token `%c'\n", g_main.input_line[k]);
+				return (-1);
+			}
+			else if (g_main.input_line[k] == '\0')
+			{
+				printf("left: syntax error near unexpected token `newline'\n");
 				return (-1);
 			}
 			else
